@@ -27,7 +27,7 @@ class _ButtonGreenState extends State<ButtonGreen> {
         height: widget._heigth,
         width: widget._width,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30.0),
+            borderRadius: BorderRadius.circular(15.0),
             gradient: LinearGradient(
                 colors: [
                   Color(0xFFa7ff84),
@@ -48,7 +48,6 @@ class _ButtonGreenState extends State<ButtonGreen> {
                 fontFamily: "Lato",
                 color: Colors.white
             ),
-
           ),
         ),
       ),

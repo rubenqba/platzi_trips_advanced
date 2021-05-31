@@ -24,9 +24,10 @@ class _SignInScreenState extends State<SignInScreen> {
         children: [
           GradientBack("", null),
           Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Welcome\n This is your travel app",
+                "Welcome\nThis is your travel app",
                 style: TextStyle(
                   fontSize: 37,
                   fontFamily: "Lato",
