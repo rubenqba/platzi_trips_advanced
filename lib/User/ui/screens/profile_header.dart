@@ -45,9 +45,9 @@ class ProfileHeader extends StatelessWidget {
       );
     }
     AppUser user = AppUser(
-        name: snapshot.data!.displayName!,
-        email: snapshot.data!.email!,
-        avatar: snapshot.data!.photoURL!
+      name: snapshot.data!.displayName!,
+      email: snapshot.data!.email!,
+      avatarUrl: snapshot.data!.photoURL!,
     );
     return Container(
       margin: _margin,

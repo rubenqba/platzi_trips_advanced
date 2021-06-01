@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:platzi_trips_advanced/Place/model/place.dart';
-import 'profile_place_info.dart';
-import 'profile_place.dart';
+import 'package:platzi_trips_advanced/User/ui/widgets/profile_place_info.dart';
 
 class ProfilePlace extends StatelessWidget {
 
-  String image;
-  Place place;
+  final Place _place;
 
-  ProfilePlace(this.image, this.place);
+  ProfilePlace(Place place) : this._place = place;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +20,7 @@ class ProfilePlace extends StatelessWidget {
       decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.cover,
-              image: AssetImage(image)
+              image: NetworkImage(_place.imageUrl)
           ),
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
           color: Colors.red,
@@ -40,7 +38,7 @@ class ProfilePlace extends StatelessWidget {
       alignment: Alignment(0.0, 0.8),
       children: <Widget>[
         photoCard,
-        ProfilePlaceInfo(place)
+        ProfilePlaceInfo(_place)
       ],
     );
   }

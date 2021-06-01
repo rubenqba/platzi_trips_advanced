@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import '../../../Place/model/place.dart';
-import '../../../widgets/floating_action_button_green.dart';
+import 'package:platzi_trips_advanced/Place/model/place.dart';
+import 'package:platzi_trips_advanced/widgets/floating_action_button_green.dart';
+
 
 class ProfilePlaceInfo extends StatelessWidget {
 
-  Place place;
+  final Place _place;
 
-  ProfilePlaceInfo(this.place);
+  ProfilePlaceInfo(Place place) : this._place = place;
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
 
     final place = Text(
-      this.place.name,
+      this._place.name,
       style: TextStyle(
           fontFamily: 'Lato',
           fontSize: 20.0,
@@ -29,7 +30,7 @@ class ProfilePlaceInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                this.place.where,
+                this._place.name,
                 style: TextStyle(
                     color: Color.fromRGBO(0, 0, 0, 0.4),
                     fontFamily: 'Lato',
@@ -38,7 +39,7 @@ class ProfilePlaceInfo extends StatelessWidget {
                 ),
               ),
               Text(
-                this.place.type,
+                this._place.description,
                 style: TextStyle(
                     color: Color.fromRGBO(0, 0, 0, 0.4),
                     fontFamily: 'Lato',
@@ -51,7 +52,7 @@ class ProfilePlaceInfo extends StatelessWidget {
     );
 
     final steps = Text(
-      'Steps ${this.place.steps}',
+      'Heart ${_place.likes}',
       style: TextStyle(
           fontFamily: 'Lato',
           fontSize: 14.0,
@@ -90,7 +91,7 @@ class ProfilePlaceInfo extends StatelessWidget {
       alignment: Alignment(0.8, 1.25),
       children: <Widget>[
         card,
-        FloatingActionButtonGreen()
+        FloatingActionButtonGreen(icon: Icons.favorite_border,)
       ],
     );
   }

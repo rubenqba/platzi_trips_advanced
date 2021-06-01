@@ -25,7 +25,7 @@ class UserProfileInfo extends StatelessWidget {
           shape: BoxShape.circle,
           image: DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage(_user.avatar)
+              image: NetworkImage(_user.avatarUrl)
           )
       ),
     );

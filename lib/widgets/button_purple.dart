@@ -3,21 +3,17 @@ import 'package:flutter/material.dart';
 
 class ButtonPurple extends StatelessWidget {
 
-  String buttonText = "Navigate";
+  final String text;
+  final VoidCallback? callback;
 
-  ButtonPurple(this.buttonText);
+
+  ButtonPurple({Key? key, required this.text, this.callback});
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return InkWell(
-      onTap: () {
-        Scaffold.of(context).showSnackBar(
-            SnackBar(
-              content: Text("Navegando"),
-            )
-        );
-      },
+      onTap: this.callback,
       child: Container(
         margin: EdgeInsets.only(
             top: 30.0,
@@ -37,23 +33,18 @@ class ButtonPurple extends StatelessWidget {
               end: FractionalOffset(1.0, 0.6),
               stops: [0.0, 0.6],
               tileMode: TileMode.clamp
-
             )
-
         ),
-
         child: Center(
           child: Text(
-            buttonText,
+            text,
             style: TextStyle(
               fontSize: 18.0,
               fontFamily: "Lato",
               color: Colors.white
             ),
-
           ),
         ),
-
       ),
     );
   }

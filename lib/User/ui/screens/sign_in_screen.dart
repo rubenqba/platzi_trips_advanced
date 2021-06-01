@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:platzi_trips_advanced/User/bloc/user_bloc.dart';
+import 'package:platzi_trips_advanced/User/model/app_user.dart';
 import 'package:platzi_trips_advanced/platzi_trips_cupertino.dart';
 import 'package:platzi_trips_advanced/widgets/button_green.dart';
 import 'package:platzi_trips_advanced/widgets/gradient_back.dart';
@@ -16,10 +17,12 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
 
   late UserBloc userBloc;
+  late Size screenSize;
 
   @override
   Widget build(BuildContext context) {
     userBloc = BlocProvider.of(context);
+    screenSize = MediaQuery.of(context).size;
     return _handleCurrentSession();
   }
 
@@ -40,24 +43,31 @@ class _SignInScreenState extends State<SignInScreen> {
       body: Stack(
         alignment: Alignment.center,
         children: [
-          GradientBack("", null),
+          GradientBack(),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "Welcome\nThis is your travel app",
-                style: TextStyle(
-                  fontSize: 37,
-                  fontFamily: "Lato",
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
-                ),
+              Flexible(
+                  child: Container(
+                    width: screenSize.width,
+                    child: Text(
+                      "Welcome\nThis is your travel app",
+                      style: TextStyle(
+                          fontSize: 37,
+                          fontFamily: "Lato",
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  )
               ),
               ButtonGreen(
                 text: "Login with Gmail",
                 callback: () {
                   userBloc.signOut();
-                  userBloc.signIn().then((user) => print("el usuario es ${user.displayName}"));
+                  userBloc.signIn()
+                      .then((user) => AppUser(uid: user.uid, name: user.displayName!, email: user.email!, avatarUrl: user.photoURL!))
+                      .then((user) => userBloc.updateUser(user));
                 },
                 width: 300,
                 heigth: 50,
